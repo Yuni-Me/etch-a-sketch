@@ -24,12 +24,19 @@ function paintPixel(e) {
     e.target.style.backgroundColor = '#000';
 }
 
+function getRandomColor() {
+	const pastelsColors = ['FFEB00', 'FC0019', '01FF4F', 'FF01D7', '5600CC', '00EDF5'];
+	let randomNumber = Math.floor(Math.random() * 6);
+	return pastelsColors[randomNumber];
+	
+}
+
 let slider = document.querySelector('.slider');
 var output = document.getElementById("demo");
 let clearButton = document.querySelector('.clear');
 output.innerHTML = slider.value;
 
-setScreen(32);
+setScreen(76);
 
 let dots = document.getElementsByClassName('pixel');
 console.log(divGrid);
@@ -46,9 +53,15 @@ clearButton.addEventListener('click', () => {
 });
 pixels.map( dot => {
     dot.addEventListener('mouseover', e => {
-        e.target.style.background = '#3a3042';
+        // e.target.style.background = '#3a3042';
         // e.target.style.background = 'linear-gradient(to bottom, red,orange,yellow,green,blue,indigo,violet)';
-        // e.target.style.background = 'repeating-linear-gradient(red, yellow 10%, green 20%)';
+        e.target.style.background = `#${getRandomColor()}`;
+        
+
+
+        // Psychedelic color
+        // e.target.style.background = `#${getRandomColor()}`;
+        
     });
 });
 // addEventListener('onmouseover', () => {

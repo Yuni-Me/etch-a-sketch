@@ -59,6 +59,7 @@
   border: 1px inset #eeecec;
   outline: 1px outset #eeecec;
   padding: 0;
+  cursor: crosshair;
 }
 .divGrid {
   display: flex;
@@ -76,8 +77,8 @@
   margin-top: 30px;
 }
 .divClear {
-  width: 100px;
-  height: 100px;
+  width: 96px;
+  height: 96px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -85,6 +86,7 @@
   border: 10px dashed #e5e5e5;
   box-shadow: 3px 3px 10px #3a3042;
   cursor: pointer;
+  margin-left: -20px;
 }
 .divCLear:focus,
 .clear:focus {
@@ -92,15 +94,17 @@
   box-shadow: 3px 3px 10px #3a3042;
 }
 .clear {
-  width: 106px;
-  height: 106px;
+  width: 102px;
+  height: 102px;
   border-radius: 50%;
   border: 15px dashed #ff784f;
   outline: 0px dashed #ff784f;
   box-shadow: 3px 3px 5px #3a3042;
+  font-size: 1rem;
+  cursor: pointer;
 }
 .slidecontainer {
-  width: 35%;
+  width: 30%;
   border-radius: 15px;
   box-shadow: 2px 2px 2px #ff784f;
 }
@@ -155,10 +159,14 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  margin-left: 10px;
 }
 .color h3 {
   margin-top: -10px;
   margin-bottom: 10px;
+  font-family: "Roboto Mono", monospace;
+  color: #ad5135;
+  text-shadow: rgba(0, 0, 0, 0.1);
 }
 .colorContainer {
   display: flex;
@@ -181,6 +189,7 @@
   padding-top: 4px;
   border: 1px groove #ff784f;
   outline: 2px groove #ff784f;
+  font-size: 0.9rem;
 }
 .colorPicker {
   display: flex;
@@ -192,19 +201,21 @@
 .colorPicker input {
   height: 92px;
   width: 44px;
+  cursor: pointer;
 }
 .preColors {
   margin-right: -50px;
 }
 .preColors label {
   padding: 17px 5px 0.1px;
+  font-size: 1.1rem;
 }
 .rainbowColor button,
 .darkColor button,
 .randomColor button {
   width: 44px;
   height: 41px;
-  cursor: default;
+  cursor: pointer;
   border: 4px solid #e5e5e5;
 }
 .rainbowColor button {
