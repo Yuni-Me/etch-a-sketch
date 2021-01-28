@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etch-A-Sketch</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Eagle+Lake&family=Roboto+Mono:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="device">
+            <div class="outerContainer">
+                <div class="header">
+                    <span>MAGIC</span>
+                    <h1>Etch A Sketch</h1>
+                    <span>SCREEN</span>
+                </div>
+                <div class="screen"></div>
+                <div class="actions">
+                    <div class="divClear"><button class="clear">CLEAR</button></div>
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                    </div>
+                    <div class="color">
+                        <h3>Pick -A-Color</h3>
+                        <div class="colorContainer">
+                            <div class="colorPicker">
+                                <label for="head">Pick</label>
+                                <input type="color" id="head" name="head" value="#e66465">
+
+                            </div>
+                            <div class="preColors">
+                                <div class="rainbowColor">
+                                    <button></button>
+                                    <label for="rainbowColor">Rainbow</label>
+                                </div>
+                                <div class="blackColor">
+                                    <button></button>
+                                    <label for="blackColor">Black</label>
+                                </div>
+                                <div class="randomColor">
+                                    <button></button>
+                                    <label for="randomColor">Psychedelic</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="row">
+            <div class="twelve columns">
+               <ul class="social-links">
+                  <li><a href="https://www.linkedin.com/in/yunia-matamoros-15b38b5/"><img src="./images/social_linkedin.png" alt="linkedin icon"></a></li>
+                  <li><a href="https://github.com/Yuni-Me"><img src="./images/social_github.png" alt="Github icon"></a></li>
+               </ul>
+    
+               <ul>
+                <li>Build with love by YHackR</li>
+               </ul>
+    
+               <ul class="copyright">
+                  <li>&copy; Copyright 2021</li>
+                  <!-- <li><a title="Styleshout" href="#"> Yuni Mata</a></li> -->
+                  <li>YM ♥️</li>
+               </ul>
+    
+            </div>
+            <!-- <div id="go-top"><a class="smoothscroll" title="Back to Top" href="#home"><i class="icon-up-open"></i></a></div> -->
+         </div>
+    </footer>
+    
+    <script src="./app.js"></script>
+</body>
+</html>
