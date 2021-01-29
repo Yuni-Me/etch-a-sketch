@@ -1,8 +1,16 @@
 let screen = document.querySelector('.screen');
 let divGrid = document.createElement('div');
+let slider = document.querySelector('.slider');
+var output = document.getElementById("demo");
+let clearButton = document.querySelector('.clear');
+let colorPick = 'red';
+let dots = document.getElementsByClassName('pixel');
+output.innerHTML = slider.value;
+let colorSelector = document.querySelector('.colorPicker input');
+let colorSelectors = Array.from(document.querySelectorAll('.preColors button'));
 
 function setScreen(gridSize) {
-
+    clearScreen();
     divGrid.classList.add('divGrid');
     for (let i = 0; i < gridSize * gridSize; i++) {
         let pixel = document.createElement('div');
@@ -15,32 +23,27 @@ function setScreen(gridSize) {
     screen.appendChild(divGrid);
     
 }
-
+/* Function works*/
 function clearScreen() {
-    pixel.style.backgroundColor = '#e5e5e5';
+    divGrid.innerHTML = '';
 }
 
 function paintPixel(e) {
-    e.target.style.backgroundColor = '#000';
+    this.e.target.style.backgroundColor = '#000';
 }
 
 function getRandomColor() {
 	const pastelsColors = ['FFEB00', 'FC0019', '01FF4F', 'FF01D7', '5600CC', '00EDF5'];
 	let randomNumber = Math.floor(Math.random() * 6);
 	return pastelsColors[randomNumber];
-	
+
 }
 
-let slider = document.querySelector('.slider');
-var output = document.getElementById("demo");
-let clearButton = document.querySelector('.clear');
-output.innerHTML = slider.value;
 
-setScreen(76);
 
-let dots = document.getElementsByClassName('pixel');
-console.log(divGrid);
-console.log(dots);
+// setScreen(4);
+
+
 
 slider.oninput = function() {
   output.innerHTML = this.value;
@@ -53,20 +56,32 @@ clearButton.addEventListener('click', () => {
 });
 pixels.map( dot => {
     dot.addEventListener('mouseover', e => {
-        // e.target.style.background = '#3a3042';
-        // e.target.style.background = 'linear-gradient(to bottom, red,orange,yellow,green,blue,indigo,violet)';
-        e.target.style.background = `#${getRandomColor()}`;
-        
-
-
-        // Psychedelic color
-        // e.target.style.background = `#${getRandomColor()}`;
-        
+        e.target.style.background = colorPick;         
     });
 });
-// addEventListener('onmouseover', () => {
-//     this.style.backgroundColor = "#000";
-// });
-// setScreen(slider.value);
-// setScreen(16);
+
+slider.addEventListener('input', e => {
+    setScreen(e.target.value);
+});
+
+
+colorSelectors.map(color => {
+    color.addEventListener('click', e => {
+        let id = e.target.getAttribute('id');
+        if(id === 'rainbow') {
+            colorPick = 'linear-gradient(to bottom, red,orange,yellow,green,blue,indigo,violet)';
+        }
+        if(id === 'dark') {
+            colorPick = '#3a3042';
+        }
+        if(id === 'random') {
+            colorPick = `#${getRandomColor()}`;
+        }
+    });
+});
+
+colorSelector.addEventListener('change', e => {
+    colorPick = e.target.value;
+});
+
 
