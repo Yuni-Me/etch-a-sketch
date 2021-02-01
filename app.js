@@ -1,87 +1,88 @@
-let screen = document.querySelector('.screen');
+const output = document.getElementById("demo");
+const colorSelector = document.querySelector('.colorPicker input');
+const colorSelectors = Array.from(document.querySelectorAll('.preColors button'));
 let divGrid = document.createElement('div');
 let slider = document.querySelector('.slider');
-var output = document.getElementById("demo");
-let clearButton = document.querySelector('.clear');
-let colorPick = 'red';
-let dots = document.getElementsByClassName('pixel');
-output.innerHTML = slider.value;
-let colorSelector = document.querySelector('.colorPicker input');
-let colorSelectors = Array.from(document.querySelectorAll('.preColors button'));
+let colorPick = 'tomato';
+let selection = '#e66465';
 
+/* FUNCTIONS */
+/* Set the grid system on the screen and pixels functionality */
 function setScreen(gridSize) {
+    const screen = document.querySelector('.screen');
+    const clearButton = document.querySelector('.clear');
     clearScreen();
     divGrid.classList.add('divGrid');
     for (let i = 0; i < gridSize * gridSize; i++) {
         let pixel = document.createElement('div');
         pixel.classList.add('pixel');
         divGrid.appendChild(pixel);
-        pixel.style.width = `${(560 - (gridSize * 2))/gridSize}px`;
-        pixel.style.height = `${(500 - (gridSize * 2))/gridSize}px`;
+        pixel.style.width = `${(screen.clientWidth - (gridSize * 2))/gridSize}px`;
+        pixel.style.height = `${(screen.clientHeight - (gridSize * 2))/gridSize}px`;
     }
-    // console.log(divGrid);
     screen.appendChild(divGrid);
-    
+    let dots = document.getElementsByClassName('pixel'); // THIS IS THE PROBLEM
+    let pixels = Array.from(dots)
+    clearButton.addEventListener('click', () => {
+        pixels.forEach( pixel => {
+            pixel.style.background = '#e5e5e5';
+        });
+    });
+    pixels.map( dot => {
+        dot.addEventListener('mouseover', changeColor);
+    });
 }
-/* Function works*/
+/* Clear the screen */
 function clearScreen() {
     divGrid.innerHTML = '';
 }
 
-function paintPixel(e) {
-    this.e.target.style.backgroundColor = '#000';
+function changeColor(e) {
+    if(colorPick === 'rainbow') {
+        e.target.style.backgroundColor = `hsl(${Math.random() * 360 }, 100%, 50%)`;
+    } else if(colorPick === 'dark') {
+        e.target.style.backgroundColor = '#3a3042';
+    } else if(colorPick === 'eraser') {
+        e.target.style.backgroundColor = '#e5e5e5';
+    } else if(colorPick === 'pick') {
+        e.target.style.backgroundColor = selection;
+    } else {
+        e.target.style.backgroundColor = '#e66465';
+    }
 }
 
-function getRandomColor() {
-	const pastelsColors = ['FFEB00', 'FC0019', '01FF4F', 'FF01D7', '5600CC', '00EDF5'];
-	let randomNumber = Math.floor(Math.random() * 6);
-	return pastelsColors[randomNumber];
-
-}
-
-
-
-// setScreen(4);
-
-
-
+// show the slider's value selection
+output.innerHTML = slider.value;
 slider.oninput = function() {
-  output.innerHTML = this.value;
-}
-let pixels = Array.from(dots)
-clearButton.addEventListener('click', () => {
-    pixels.forEach( pixel => {
-        pixel.style.background = '#e5e5e5';
-    });
-});
-pixels.map( dot => {
-    dot.addEventListener('mouseover', e => {
-        e.target.style.background = colorPick;         
-    });
-});
+    output.innerHTML = this.value;
+  }
 
+/* Event Listeners */ 
+// After slider selection the screen rebuilds with new value
 slider.addEventListener('input', e => {
     setScreen(e.target.value);
 });
 
-
+// Color selection
 colorSelectors.map(color => {
     color.addEventListener('click', e => {
         let id = e.target.getAttribute('id');
         if(id === 'rainbow') {
-            colorPick = 'linear-gradient(to bottom, red,orange,yellow,green,blue,indigo,violet)';
+            colorPick = 'rainbow'
         }
         if(id === 'dark') {
-            colorPick = '#3a3042';
+            colorPick = 'dark'
         }
-        if(id === 'random') {
-            colorPick = `#${getRandomColor()}`;
+        if(id === 'eraser') {
+            colorPick = 'eraser'
         }
     });
 });
 
 colorSelector.addEventListener('change', e => {
-    colorPick = e.target.value;
+    colorPick = 'pick';
+    selection = e.target.value;
 });
 
-
+// On Page Load - default size
+setScreen(16);

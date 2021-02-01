@@ -11,7 +11,7 @@
 <body>
     <div class="container">
         <div class="device">
-            <div class="outerContainer">
+            <div class="innerContainer">
                 <div class="header">
                     <span>MAGIC</span>
                     <h1>Etch A Sketch</h1>
@@ -21,8 +21,9 @@
                 <div class="actions">
                     <div class="divClear"><button class="clear">CLEAR</button></div>
                     <div class="slidecontainer">
+                        
+                        <input type="range" min="4" max="76" value='40' step="12" class="slider" id="myRange" >
                         <div><p>SIZE: <span id="demo"></span></p></div>
-                        <input type="range" min="4" max="100" value='4' step="12" class="slider" id="myRange" >
                     </div>
                     <div class="color">
                         <h3>PICK-A-COLOR</h3>
@@ -34,16 +35,23 @@
                             <div class="preColors">
                                 <div class="rainbowColor">
                                     <button id="rainbow"></button>
-                                    <label for="rainbowColor">RAINBOW</label>
+                                    <!-- <label for="rainbowColor">RAINBOW</label> -->
                                 </div>
                                 <div class="darkColor">
                                     <button id="dark"></button>
-                                    <label for="darkColor">DARK</label>
+                                    <!-- <label for="darkColor">DARK</label> -->
                                 </div>
-                                <div class="randomColor">
-                                    <button id="random"></button>
-                                    <label for="randomColor">PSYCHEDELIC</label>
+                                <div class="eraserColor">
+                                    <div>
+                                        <button id="eraser"></button>
+                                    </div>
+                                    <!-- <label for="eraserColor">ERASER</label> -->
                                 </div>
+                            </div>
+                            <div class="labels">
+                                <label for="rainbowColor">RAINBOW</label>
+                                <label for="darkColor">DARK</label>
+                                <label for="eraserColor">ERASER</label>
                             </div>
                         </div>
                     </div>
